@@ -133,17 +133,23 @@ Figure 2: Relationship of speedup to thread count.
 ## Speed Up
 
 From Table 2 and Figure 2, we see that when the $t\le4$, the speed up is roughly the same as $t$, but always a bit lower, this is due to the sequential part that is not parallelized (which also includes the overhead introduced by the logic to perform the parallelization). The **Amdahl's law** states that the theoretical speedup $S$ of the task is 
+
 $$
 S = \frac 1 {(1-p) + \frac p  s} \le \frac 1 {1-p}
 $$
+
 where $p$ is the proportion of the execution time that is being improved, $s$ is the speedup of this the improvement. In parallelization, theoretically, we have $s=t$. And if we define $q=1-p$ as the proportion of execution time that is not being improved (the sequential part).
+
 $$
 S = \frac 1 {q + \frac {1-q} t} = \frac t {tq + 1 - q} = \frac t {q(t-1) + 1} \Rightarrow q =  \frac {t-S} {S(t-1)}
 $$
+
 From experiments, we have an actual speedup of approximately $S \approx 3.94$ when $t=4$, so
+
 $$
 q=\frac {0.06} {3.4 \times 3} \approx 0.0051
 $$
+
 So the sequential part only makes up 0.51% of the execution time.
 
 ## Hyperthreading
